@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* dark mode base */
+.dark body {
+  background-color: rgb(15 23 42);
+}
+
+/* transition utility */
+@layer utilities {
+  .transition-theme {
+    transition: background-color 0.5s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+}
