@@ -1,20 +1,27 @@
-import usePomodoro from '../usePomodoro';
+import usePomodoro, { PomodoroPreset } from '../usePomodoro';
 
 interface TimerProps {
-  onWorkComplete: (startedAt: Date) => void;
+  preset: PomodoroPreset;
+  onWorkComplete: (startedAt: Date, durationMinutes: number) => void;
+  onStart?: () => void;
 }
 
-export default function Timer({ onWorkComplete }: TimerProps) {
-  const { mode, secondsLeft, running, start, pause, reset } = usePomodoro(onWorkComplete);
+export default function Timer({ preset, onWorkComplete, onStart }: TimerProps) {
+  const { mode, secondsLeft, running, start, pause, reset } = usePomodoro(preset, onWorkComplete);
 
   const minutes = Math.floor(secondsLeft / 60);
   const seconds = secondsLeft % 60;
   const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-  const total = mode === 'work' ? 25 * 60 : 5 * 60;
+  const total = mode === 'work' ? preset.workMinutes * 60 : preset.breakMinutes * 60;
   const progress = ((total - secondsLeft) / total) * 100;
 
   const isWork = mode === 'work';
+
+  const handleStart = () => {
+    onStart?.();
+    start();
+  };
 
   return (
     <div
@@ -32,7 +39,7 @@ export default function Timer({ onWorkComplete }: TimerProps) {
       <div className="flex justify-center gap-3">
         {!running ? (
           <button
-            onClick={start}
+            onClick={handleStart}
             className="rounded-lg bg-white px-6 py-2 font-semibold text-slate-900 hover:bg-slate-100"
           >
             Bắt đầu

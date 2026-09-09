@@ -1,17 +1,34 @@
 import { useEffect, useRef, useState } from 'react';
+import { beep, showNotification } from './utils/sound';
 
-const WORK_MINUTES = 25;
-const BREAK_MINUTES = 5;
+export type Mode = 'work' | 'break';
 
-type Mode = 'work' | 'break';
+export interface PomodoroPreset {
+  workMinutes: number;
+  breakMinutes: number;
+}
 
-export default function usePomodoro(onWorkComplete: (startedAt: Date) => void) {
+export default function usePomodoro(
+  preset: PomodoroPreset,
+  onWorkComplete: (startedAt: Date, durationMinutes: number) => void,
+) {
   const [mode, setMode] = useState<Mode>('work');
-  const [secondsLeft, setSecondsLeft] = useState(WORK_MINUTES * 60);
+  const [secondsLeft, setSecondsLeft] = useState(preset.workMinutes * 60);
   const [running, setRunning] = useState(false);
   const startRef = useRef<Date | null>(null);
   const completeRef = useRef(onWorkComplete);
   completeRef.current = onWorkComplete;
+
+  const presetRef = useRef(preset);
+  presetRef.current = preset;
+
+  // reset timer khi đổi preset
+  useEffect(() => {
+    setRunning(false);
+    setMode('work');
+    setSecondsLeft(preset.workMinutes * 60);
+    startRef.current = null;
+  }, [preset.workMinutes, preset.breakMinutes]);
 
   useEffect(() => {
     if (!running) return;
@@ -19,14 +36,18 @@ export default function usePomodoro(onWorkComplete: (startedAt: Date) => void) {
       setSecondsLeft((s) => {
         if (s > 1) return s - 1;
         // phase ended
+        beep();
         if (mode === 'work') {
           const startedAt = startRef.current ?? new Date();
-          completeRef.current(startedAt);
+          const workMin = presetRef.current.workMinutes;
+          completeRef.current(startedAt, workMin);
+          showNotification('Hết giờ học!', `Nghỉ ${presetRef.current.breakMinutes} phút nhé.`);
           setMode('break');
-          return BREAK_MINUTES * 60;
+          return presetRef.current.breakMinutes * 60;
         } else {
+          showNotification('Hết giờ nghỉ!', 'Bắt đầu phiên học mới nào.');
           setMode('work');
-          return WORK_MINUTES * 60;
+          return presetRef.current.workMinutes * 60;
         }
       });
     }, 1000);
@@ -43,7 +64,7 @@ export default function usePomodoro(onWorkComplete: (startedAt: Date) => void) {
   const reset = () => {
     setRunning(false);
     setMode('work');
-    setSecondsLeft(WORK_MINUTES * 60);
+    setSecondsLeft(presetRef.current.workMinutes * 60);
     startRef.current = null;
   };
 
