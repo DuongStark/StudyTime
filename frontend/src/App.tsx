@@ -103,8 +103,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 transition-theme dark:bg-slate-900">
-      <header className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 py-8 text-white shadow-lg">
-        <div className="relative mx-auto max-w-3xl px-4">
+      <header className="bg-indigo-600 py-8 text-white">
+        <div className="mx-auto max-w-3xl px-4">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold sm:text-3xl">Study Timer</h1>

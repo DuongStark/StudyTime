@@ -11,14 +11,11 @@ export default function Stats({ stats }: StatsProps) {
 
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-theme dark:border-slate-700 dark:bg-slate-800">
-      <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-800 transition-theme dark:text-slate-100">
-        <svg className="h-5 w-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-        </svg>
+      <h2 className="mb-4 text-lg font-bold text-slate-800 transition-theme dark:text-slate-100">
         Thống kê hôm nay
       </h2>
       <div className="mb-5 flex items-baseline gap-2">
-        <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-4xl font-bold text-transparent">
+        <span className="text-4xl font-bold text-indigo-600">
           {timeText}
         </span>
         <span className="text-sm text-slate-500 transition-theme dark:text-slate-400">
@@ -48,7 +45,7 @@ export default function Stats({ stats }: StatsProps) {
                 </div>
                 <div className="h-2 overflow-hidden rounded-full bg-slate-100 transition-theme dark:bg-slate-700">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 transition-all duration-500"
+                    className="h-full rounded-full bg-indigo-500 transition-all duration-500"
                     style={{ width: `${percent}%` }}
                   />
                 </div>
