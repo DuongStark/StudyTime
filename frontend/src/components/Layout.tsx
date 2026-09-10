@@ -1,18 +1,19 @@
 import { ReactNode } from 'react';
+import { Timer, ChartBar, GearSix, Export } from '@phosphor-icons/react';
 
 export type PageKey = 'dashboard' | 'statistics' | 'settings' | 'export';
 
 interface NavItem {
   key: PageKey;
   label: string;
-  icon: string;
+  icon: ReactNode;
 }
 
-export const navItems: NavItem[] = [
-  { key: 'dashboard', label: 'Dashboard', icon: '⏱️' },
-  { key: 'statistics', label: 'Statistics', icon: '📊' },
-  { key: 'settings', label: 'Settings', icon: '⚙️' },
-  { key: 'export', label: 'Export', icon: '📤' },
+const navItems: NavItem[] = [
+  { key: 'dashboard', label: 'Dashboard', icon: <Timer size={20} weight="duotone" /> },
+  { key: 'statistics', label: 'Statistics', icon: <ChartBar size={20} weight="duotone" /> },
+  { key: 'settings', label: 'Settings', icon: <GearSix size={20} weight="duotone" /> },
+  { key: 'export', label: 'Export', icon: <Export size={20} weight="duotone" /> },
 ];
 
 interface SidebarProps {
@@ -62,7 +63,7 @@ export default function Sidebar({ currentPage, onNavigate, isMobileOpen, onClose
                     : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700'
                 }`}
               >
-                <span className="text-base">{item.icon}</span>
+                <span className="flex h-5 w-5 items-center justify-center">{item.icon}</span>
                 <span>{item.label}</span>
               </button>
             ))}
