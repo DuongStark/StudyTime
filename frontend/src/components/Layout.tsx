@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Timer, ChartBar, GearSix, Export } from '@phosphor-icons/react';
+import { Timer, ChartBar, GearSix, Export, Moon, Sun } from '@phosphor-icons/react';
 
 export type PageKey = 'dashboard' | 'statistics' | 'settings' | 'export';
 
@@ -86,6 +86,8 @@ interface LayoutProps {
   isMobileOpen: boolean;
   onMobileToggle: () => void;
   onMobileClose: () => void;
+  isDarkMode: boolean;
+  onDarkModeToggle: () => void;
 }
 
 export function Layout({
@@ -95,6 +97,8 @@ export function Layout({
   isMobileOpen,
   onMobileToggle,
   onMobileClose,
+  isDarkMode,
+  onDarkModeToggle,
 }: LayoutProps) {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
@@ -104,6 +108,20 @@ export function Layout({
         isMobileOpen={isMobileOpen}
         onClose={onMobileClose}
       />
+
+      {/* Top bar - desktop */}
+      <div className="sticky top-0 z-30 hidden items-center justify-between border-b border-slate-200 bg-white px-6 py-3 dark:border-slate-700 dark:bg-slate-800 lg:flex lg:ml-60">
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+          {navItems.find((n) => n.key === currentPage)?.label}
+        </h1>
+        <button
+          onClick={onDarkModeToggle}
+          className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
+          title="Toggle dark mode"
+        >
+          {isDarkMode ? <Sun size={20} weight="fill" /> : <Moon size={20} weight="fill" />}
+        </button>
+      </div>
 
       {/* Mobile header */}
       <div className="sticky top-0 z-30 flex items-center border-b border-slate-200 bg-white px-4 py-3 dark:border-slate-700 dark:bg-slate-800 lg:hidden">
@@ -115,9 +133,16 @@ export function Layout({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <h1 className="ml-3 text-lg font-bold text-slate-900 dark:text-slate-100">
+        <h1 className="ml-3 flex-1 text-lg font-bold text-slate-900 dark:text-slate-100">
           {navItems.find((n) => n.key === currentPage)?.label}
         </h1>
+        <button
+          onClick={onDarkModeToggle}
+          className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
+          title="Toggle dark mode"
+        >
+          {isDarkMode ? <Sun size={20} weight="fill" /> : <Moon size={20} weight="fill" />}
+        </button>
       </div>
 
       {/* Main content */}

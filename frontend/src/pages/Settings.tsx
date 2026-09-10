@@ -1,23 +1,9 @@
-import { useState, useEffect } from 'react';
+interface SettingsProps {
+  isDarkMode: boolean;
+  onDarkModeToggle: () => void;
+}
 
-export default function Settings() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    setDarkMode(document.documentElement.classList.contains('dark'));
-  }, []);
-
-  const toggleDarkMode = () => {
-    const newValue = !darkMode;
-    setDarkMode(newValue);
-    if (newValue) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  };
+export default function Settings({ isDarkMode, onDarkModeToggle }: SettingsProps) {
 
   return (
     <div className="space-y-6">
@@ -41,14 +27,14 @@ export default function Settings() {
               </div>
             </div>
             <button
-              onClick={toggleDarkMode}
+              onClick={onDarkModeToggle}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                darkMode ? 'bg-blue-600' : 'bg-slate-200'
+                isDarkMode ? 'bg-blue-600' : 'bg-slate-200'
               }`}
             >
               <span
                 className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  darkMode ? 'translate-x-6' : 'translate-x-1'
+                  isDarkMode ? 'translate-x-6' : 'translate-x-1'
                 }`}
               />
             </button>
