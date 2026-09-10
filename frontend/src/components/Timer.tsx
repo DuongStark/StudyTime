@@ -89,7 +89,7 @@ export default function Timer({ preset, onWorkComplete, onStart }: TimerProps) {
         {isWork ? 'Thời gian học' : 'Giờ nghỉ'}
       </p>
 
-      <div className="mx-auto mb-6">
+      <div className="relative mx-auto mb-6">
         <ProgressRing progress={progress} isWork={isWork} />
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <p className="font-mono text-6xl font-bold sm:text-7xl">{display}</p>
