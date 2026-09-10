@@ -11,7 +11,7 @@ export default function Settings({ isDarkMode, onDarkModeToggle }: SettingsProps
         Cài đặt
       </h2>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+      <div className="rounded-lg border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
         <h3 className="mb-4 text-lg font-semibold text-slate-800 dark:text-slate-100">
           Giao diện
         </h3>
@@ -42,7 +42,7 @@ export default function Settings({ isDarkMode, onDarkModeToggle }: SettingsProps
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+      <div className="rounded-lg border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
         <h3 className="mb-4 text-lg font-semibold text-slate-800 dark:text-slate-100">
           Thông báo
         </h3>

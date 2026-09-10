@@ -89,47 +89,48 @@ export default function Dashboard() {
   const sessionCount = stats?.totalSessions || 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {error && (
         <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950 dark:text-red-300">
           {error}
         </div>
       )}
 
-      {/* 2-column layout */}
-      <div className="grid gap-6 lg:grid-cols-5">
-        {/* Left: Timer section */}
-        <div className="lg:col-span-3 space-y-4">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
-                Môn học
-              </label>
-              <input
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-                placeholder="VD: Toán, Tiếng Anh..."
-                className="w-full rounded-lg border border-slate-200 bg-white p-2.5 text-slate-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-              />
-            </div>
-            <div>
-              <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
-                Thời lượng (học / nghỉ)
-              </label>
-              <select
-                value={presetIdx}
-                onChange={(e) => handlePresetChange(Number(e.target.value))}
-                className="w-full rounded-lg border border-slate-200 bg-white p-2.5 text-slate-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-              >
-                {PRESETS.map((p, i) => (
-                  <option key={p.label} value={i}>
-                    {p.label} phút
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
+      {/* Inputs row */}
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+            Môn học
+          </label>
+          <input
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            placeholder="VD: Toán, Tiếng Anh..."
+            className="w-full rounded-lg border border-slate-200 bg-white p-2.5 text-slate-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+          />
+        </div>
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+            Thời lượng (học / nghỉ)
+          </label>
+          <select
+            value={presetIdx}
+            onChange={(e) => handlePresetChange(Number(e.target.value))}
+            className="w-full rounded-lg border border-slate-200 bg-white p-2.5 text-slate-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+          >
+            {PRESETS.map((p, i) => (
+              <option key={p.label} value={i}>
+                {p.label} phút
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
 
+      {/* Main content: Timer + Stats/Sessions */}
+      <div className="flex flex-col gap-4 lg:flex-row">
+        {/* Left: Timer */}
+        <div className="flex-1">
           <Timer
             preset={preset}
             onWorkComplete={handleWorkComplete}
@@ -138,8 +139,8 @@ export default function Dashboard() {
         </div>
 
         {/* Right: Stats & Sessions */}
-        <div className="lg:col-span-2 space-y-4">
-          {/* Quick stats */}
+        <div className="flex w-full flex-col gap-4 lg:w-80">
+          {/* Stat cards */}
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
               <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 mb-2">
@@ -157,21 +158,21 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Sessions list */}
-          <div className="rounded-lg border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
+          {/* Sessions list - stretches to fill */}
+          <div className="flex flex-1 flex-col rounded-lg border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
             <div className="border-b border-slate-200 px-4 py-3 dark:border-slate-700">
               <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                 Phiên học hôm nay
               </h3>
             </div>
-            <div className="p-4">
+            <div className="flex-1 p-4">
               {sessions.length === 0 ? (
-                <div className="py-8 text-center">
-                  <BookOpen size={40} weight="duotone" className="mx-auto mb-3 text-slate-400 dark:text-slate-500" />
+                <div className="flex h-full flex-col items-center justify-center py-8">
+                  <BookOpen size={40} weight="duotone" className="mb-3 text-slate-400 dark:text-slate-500" />
                   <p className="text-sm text-slate-500 dark:text-slate-400">
                     Chưa có phiên học nào
                   </p>
-                  <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
+                  <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
                     Bắt đầu pomodoro đầu tiên!
                   </p>
                 </div>

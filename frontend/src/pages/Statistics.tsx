@@ -46,7 +46,7 @@ export default function Statistics() {
         Thống kê hôm nay
       </h2>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+      <div className="rounded-lg border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
         <div className="mb-4 flex items-baseline gap-2">
           <span className="text-4xl font-bold text-blue-600">{timeText}</span>
           <span className="text-sm text-slate-500 dark:text-slate-400">

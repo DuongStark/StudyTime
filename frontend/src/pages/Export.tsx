@@ -41,7 +41,7 @@ export default function Export() {
         Xuất dữ liệu
       </h2>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+      <div className="rounded-lg border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
         <h3 className="mb-4 text-lg font-semibold text-slate-800 dark:text-slate-100">
           Xuất CSV
         </h3>
@@ -57,7 +57,7 @@ export default function Export() {
         </button>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+      <div className="rounded-lg border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
         <h3 className="mb-4 text-lg font-semibold text-slate-800 dark:text-slate-100">
           Sắp có
         </h3>
