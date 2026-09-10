@@ -102,20 +102,20 @@ export default function App() {
   const toggleDark = () => setDark((d) => !d);
 
   return (
-    <div className="min-h-screen bg-slate-50 transition-theme dark:bg-slate-900">
-      <header className="bg-indigo-600 py-8 text-white">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+      <header className="py-4 text-slate-900 dark:text-slate-100">
         <div className="mx-auto max-w-3xl px-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold sm:text-3xl">Study Timer</h1>
-              <p className="mt-1 text-sm text-indigo-200">
+              <h1 className="text-xl font-bold sm:text-2xl">Study Timer</h1>
+              <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
                 Pomodoro {PRESETS[presetIdx].label} phút
               </p>
             </div>
             <button
               onClick={toggleDark}
               title="Dark mode (D)"
-              className="rounded-full bg-white/20 p-2 backdrop-blur-sm transition hover:bg-white/30"
+              className="rounded-lg p-2 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800"
               aria-label="Toggle dark mode"
             >
               {dark ? (
@@ -134,31 +134,31 @@ export default function App() {
 
       <main className="mx-auto max-w-3xl px-4 py-6 sm:py-8">
         {error && (
-          <div className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-center text-sm text-red-700 transition-theme dark:border-red-800 dark:bg-red-950 dark:text-red-300">
+          <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950 dark:text-red-300">
             {error}
           </div>
         )}
 
         <div className="mb-6 grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-slate-700 transition-theme dark:text-slate-300">
+            <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
               Môn học
             </label>
             <input
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               placeholder="VD: Toán, Tiếng Anh..."
-              className="w-full rounded-xl border border-slate-200 bg-white p-3 text-slate-900 shadow-sm outline-none transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-theme dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:focus:ring-indigo-900"
+              className="w-full rounded-lg border border-slate-200 bg-white p-2.5 text-slate-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-slate-700 transition-theme dark:text-slate-300">
+            <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
               Thời lượng (học / nghỉ)
             </label>
             <select
               value={presetIdx}
               onChange={(e) => handlePresetChange(Number(e.target.value))}
-              className="w-full rounded-xl border border-slate-200 bg-white p-3 text-slate-900 shadow-sm outline-none transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-theme dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:focus:ring-indigo-900"
+              className="w-full rounded-lg border border-slate-200 bg-white p-2.5 text-slate-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
             >
               {PRESETS.map((p, i) => (
                 <option key={p.label} value={i}>
@@ -180,12 +180,12 @@ export default function App() {
           <SessionList sessions={sessions} />
         </div>
 
-        <p className="mt-8 text-center text-xs text-slate-400 transition-theme dark:text-slate-500">
-          <kbd className="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] transition-theme dark:border-slate-700 dark:bg-slate-800">Space</kbd>
+        <p className="mt-8 text-center text-xs text-slate-400 dark:text-slate-500">
+          <kbd className="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] dark:border-slate-700 dark:bg-slate-800">Space</kbd>
           {' '}bắt đầu / dừng ·{' '}
-          <kbd className="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] transition-theme dark:border-slate-700 dark:bg-slate-800">R</kbd>
+          <kbd className="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] dark:border-slate-700 dark:bg-slate-800">R</kbd>
           {' '}đặt lại ·{' '}
-          <kbd className="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] transition-theme dark:border-slate-700 dark:bg-slate-800">D</kbd>
+          <kbd className="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] dark:border-slate-700 dark:bg-slate-800">D</kbd>
           {' '}dark mode
         </p>
       </main>

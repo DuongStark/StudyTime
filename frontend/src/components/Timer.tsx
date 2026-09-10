@@ -80,8 +80,8 @@ export default function Timer({ preset, onWorkComplete, onStart }: TimerProps) {
 
   return (
     <div
-      className={`relative rounded-2xl p-6 text-center text-white transition-colors duration-300 sm:p-10 ${
-        isWork ? 'bg-indigo-600' : 'bg-emerald-600'
+      className={`relative rounded-2xl p-6 text-center text-white transition-colors sm:p-10 ${
+        isWork ? 'bg-blue-600' : 'bg-slate-600'
       }`}
     >
       <p className="mb-4 text-sm font-medium text-white/80">

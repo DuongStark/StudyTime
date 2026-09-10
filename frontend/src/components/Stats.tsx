@@ -10,23 +10,23 @@ export default function Stats({ stats }: StatsProps) {
   const timeText = hours > 0 ? `${hours}h ${minutes}m` : `${minutes} phút`;
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-theme dark:border-slate-700 dark:bg-slate-800">
-      <h2 className="mb-4 text-lg font-bold text-slate-800 transition-theme dark:text-slate-100">
+    <section className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+      <h2 className="mb-4 text-lg font-bold text-slate-800 dark:text-slate-100">
         Thống kê hôm nay
       </h2>
       <div className="mb-5 flex items-baseline gap-2">
-        <span className="text-4xl font-bold text-indigo-600">
+        <span className="text-4xl font-bold text-blue-600">
           {timeText}
         </span>
-        <span className="text-sm text-slate-500 transition-theme dark:text-slate-400">
+        <span className="text-sm text-slate-500 dark:text-slate-400">
           / {stats.totalSessions} phiên
         </span>
       </div>
-      <h3 className="mb-3 text-sm font-medium text-slate-600 transition-theme dark:text-slate-300">
+      <h3 className="mb-3 text-sm font-medium text-slate-600 dark:text-slate-300">
         Theo môn học
       </h3>
       {stats.bySubject.length === 0 ? (
-        <p className="text-sm text-slate-400 transition-theme dark:text-slate-500">Chưa có dữ liệu</p>
+        <p className="text-sm text-slate-400 dark:text-slate-500">Chưa có dữ liệu</p>
       ) : (
         <ul className="space-y-3">
           {stats.bySubject.map((s) => {
@@ -36,16 +36,16 @@ export default function Stats({ stats }: StatsProps) {
             return (
               <li key={s.subject}>
                 <div className="mb-1.5 flex justify-between text-sm">
-                  <span className="font-medium text-slate-700 transition-theme dark:text-slate-200">
+                  <span className="font-medium text-slate-700 dark:text-slate-200">
                     {s.subject}
                   </span>
-                  <span className="text-slate-500 transition-theme dark:text-slate-400">
+                  <span className="text-slate-500 dark:text-slate-400">
                     {s.minutes} phút ({percent}%)
                   </span>
                 </div>
-                <div className="h-2 overflow-hidden rounded-full bg-slate-100 transition-theme dark:bg-slate-700">
+                <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
                   <div
-                    className="h-full rounded-full bg-indigo-500 transition-all duration-500"
+                    className="h-full rounded-full bg-blue-500 transition-all duration-500"
                     style={{ width: `${percent}%` }}
                   />
                 </div>
