@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import usePomodoro, { PomodoroPreset } from '../usePomodoro';
+import { Play, Pause, ArrowCounterClockwise } from '@phosphor-icons/react';
 
 interface TimerProps {
   preset: PomodoroPreset;
@@ -105,9 +106,7 @@ export default function Timer({ preset, onWorkComplete, onStart }: TimerProps) {
             className="rounded-xl bg-white px-8 py-3 font-semibold text-slate-900 transition-colors hover:bg-slate-100"
           >
             <span className="flex items-center gap-2">
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
+              <Play size={18} weight="fill" />
               Bắt đầu
             </span>
           </button>
@@ -117,9 +116,7 @@ export default function Timer({ preset, onWorkComplete, onStart }: TimerProps) {
             className="rounded-xl bg-white px-8 py-3 font-semibold text-slate-900 transition-colors hover:bg-slate-100"
           >
             <span className="flex items-center gap-2">
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-              </svg>
+              <Pause size={18} weight="fill" />
               Tạm dừng
             </span>
           </button>
@@ -130,9 +127,7 @@ export default function Timer({ preset, onWorkComplete, onStart }: TimerProps) {
           title="Reset (R)"
         >
           <span className="flex items-center gap-2">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
+            <ArrowCounterClockwise size={18} weight="bold" />
             Đặt lại
           </span>
         </button>
